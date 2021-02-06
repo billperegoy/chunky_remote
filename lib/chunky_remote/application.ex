@@ -6,6 +6,10 @@ defmodule ChunkyRemote.Application do
   use Application
 
   def start(_type, _args) do
+    # Setup event_bus topics
+    EventBus.register_topic(:user_created)
+    EventBus.subscribe({ChunkyRemote.Notifier, ["user_created"]})
+
     children = [
       # Start the Ecto repository
       ChunkyRemote.Repo,

@@ -17,6 +17,9 @@ defmodule ChunkyRemoteWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/users", UserController, only: [:new, :create, :index]
+    get "/users/verify_new", UserController, :verify_new
+    post "/users/verify", UserController, :verify
   end
 
   # Other scopes may use custom stacks.

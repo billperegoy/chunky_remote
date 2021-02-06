@@ -22,7 +22,7 @@ defmodule ChunkyRemote.MixProject do
   def application do
     [
       mod: {ChunkyRemote.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :mix, :runtime_tools]
     ]
   end
 
@@ -35,16 +35,22 @@ defmodule ChunkyRemote.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:argon2_elixir, "~> 2.0"},
+      {:assertions, "~> 0.10", only: :test},
+      {:bamboo, "~> 1.7.0"},
+      {:comeonin, "~> 5.0"},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ecto_sql, "~> 3.4"},
+      {:event_bus, "~> 1.6.2"},
+      {:ex_machina, "~> 2.4", only: :test},
+      {:faker, "~> 0.16"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:phoenix, "~> 1.5.7"},
       {:phoenix_ecto, "~> 4.1"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.4"},
       {:plug_cowboy, "~> 2.0"},
       {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 0.4"},

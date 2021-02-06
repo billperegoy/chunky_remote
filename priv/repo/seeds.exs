@@ -2,10 +2,7 @@
 #
 #     mix run priv/repo/seeds.exs
 #
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     ChunkyRemote.Repo.insert!(%ChunkyRemote.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+
+alias ChunkyRemote.Account
+# Create a superuser and verify
+

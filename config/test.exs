@@ -18,6 +18,8 @@ config :chunky_remote, ChunkyRemoteWeb.Endpoint,
   http: [port: 4002],
   server: true
 
+config :chunky_remote, ChunkyRemote.Mailer, adapter: Bamboo.TestAdapter
+
 # Wallaby
 config :wallaby, driver: Wallaby.Chrome
 

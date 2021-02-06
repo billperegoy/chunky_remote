@@ -1,0 +1,17 @@
+<H1>Verify</h1>
+
+<%= form_for @changeset, Routes.user_path(@conn, :verify), fn f -> %>
+  <div>
+    <%= text_input f, :username, placeholder: "User Name" %>
+  </div>
+
+  <div>
+    <%= text_input f, :password, placeholder: "Temporary Password" %>
+  </div>
+
+  <div>
+    <%= text_input f, :new_password, placeholder: "New Password" %>
+  </div>
+
+  <%= submit "Verify User" %>
+<% end %>

@@ -25,6 +25,8 @@ defmodule ChunkyRemote.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import ChunkyRemote.DataCase
+      import Assertions
+      use Bamboo.Test, shared: true
     end
   end
 
