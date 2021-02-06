@@ -15,6 +15,7 @@ defmodule ChunkyRemote.DataCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL
 
   using do
     quote do
@@ -28,10 +29,10 @@ defmodule ChunkyRemote.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ChunkyRemote.Repo)
+    :ok = SQL.Sandbox.checkout(ChunkyRemote.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ChunkyRemote.Repo, {:shared, self()})
+      SQL.Sandbox.mode(ChunkyRemote.Repo, {:shared, self()})
     end
 
     :ok

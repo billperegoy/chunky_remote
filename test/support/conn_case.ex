@@ -16,6 +16,7 @@ defmodule ChunkyRemoteWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  alias Ecto.Adapters.SQL
 
   using do
     quote do
@@ -32,10 +33,10 @@ defmodule ChunkyRemoteWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ChunkyRemote.Repo)
+    :ok = SQL.Sandbox.checkout(ChunkyRemote.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ChunkyRemote.Repo, {:shared, self()})
+      SQL.Sandbox.mode(ChunkyRemote.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

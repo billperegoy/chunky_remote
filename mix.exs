@@ -10,7 +10,9 @@ defmodule ChunkyRemote.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_deps: :transitive],
+      elixirc_options: elixirc_options()
     ]
   end
 
@@ -33,18 +35,20 @@ defmodule ChunkyRemote.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ecto_sql, "~> 3.4"},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
       {:phoenix, "~> 1.5.7"},
       {:phoenix_ecto, "~> 4.1"},
-      {:ecto_sql, "~> 3.4"},
-      {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.4"},
+      {:plug_cowboy, "~> 2.0"},
+      {:postgrex, ">= 0.0.0"},
       {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:telemetry_poller, "~> 0.4"}
     ]
   end
 
@@ -61,5 +65,9 @@ defmodule ChunkyRemote.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
+  end
+
+  defp elixirc_options do
+    [warnings_as_errors: true]
   end
 end
