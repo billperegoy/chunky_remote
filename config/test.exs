@@ -16,7 +16,19 @@ config :chunky_remote, ChunkyRemote.Repo,
 # you can enable the server option below.
 config :chunky_remote, ChunkyRemoteWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: true
+
+# Wallaby
+config :wallaby, driver: Wallaby.Chrome
+
+config :wallaby,
+  chromedriver: [
+    path: "assets/node_modules/chromedriver/bin/chromedriver"
+  ]
+
+config :wallaby, otp_app: :chunky_remote
+
+config :chunky_remote, :sql_sandbox, true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
