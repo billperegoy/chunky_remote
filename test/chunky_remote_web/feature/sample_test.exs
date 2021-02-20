@@ -5,7 +5,7 @@ defmodule ChunkyRemote.SampleTest do
   import Wallaby.Query
 
   describe "Login flow" do
-    test "Create user properly redirects", %{session: session} do
+    feature "Create user properly redirects", %{session: session} do
       session
       |> create_user
       |> find(css(".user", count: 1))
@@ -14,10 +14,12 @@ defmodule ChunkyRemote.SampleTest do
       |> assert_has(css(".status", count: 1, text: "unverified"))
     end
 
-    test "New user can verify their account", %{session: session} do
+    feature "New user can verify their account", %{session: session} do
       session
       |> create_user
-      |> visit("/users/verify_new")
+      |> take_screenshot
+      |> visit("/users/verify/new")
+      |> take_screenshot
       |> fill_in(text_field("User Name"), with: "user-1")
       |> fill_in(text_field("Temporary Password"), with: "random-password")
       |> fill_in(text_field("New Password"), with: "my-new-password")

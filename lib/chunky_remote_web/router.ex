@@ -18,8 +18,7 @@ defmodule ChunkyRemoteWeb.Router do
 
     get "/", PageController, :index
     resources "/users", UserController, only: [:new, :create, :index]
-    get "/users/verify_new", UserController, :verify_new
-    post "/users/verify", UserController, :verify
+    resources "/users/verify", VerifyController, only: [:new, :create]
   end
 
   # Other scopes may use custom stacks.

@@ -19,24 +19,4 @@ defmodule ChunkyRemoteWeb.UserController do
 
     render(conn, "index.html", users: users)
   end
-
-  def verify_new(conn, _params) do
-    render(conn, "verify_new.html", changeset: User.verify_changeset(%User{}, %{}))
-  end
-
-  def verify(conn, %{
-        "user" => %{
-          "username" => username,
-          "password" => password,
-          "new_password" => new_password
-        }
-      }) do
-    {:ok, user} = Account.get_user_by_username(username)
-
-    Account.verify_user(user, %{old_password: password, password: new_password})
-
-    conn
-    |> put_flash(:info, "Verified user: {user.username}")
-    |> redirect(to: Routes.user_path(conn, :index))
-  end
 end
