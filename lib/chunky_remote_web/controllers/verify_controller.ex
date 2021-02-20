@@ -18,7 +18,7 @@ defmodule ChunkyRemoteWeb.VerifyController do
 
       conn
       |> put_flash(:info, "Verified user: #{user.username}")
-      |> redirect(to: Routes.user_path(conn, :index))
+      |> redirect(to: Routes.dashboard_path(conn, :index))
     end
   end
 end

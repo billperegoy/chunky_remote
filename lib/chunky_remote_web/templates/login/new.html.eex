@@ -1,0 +1,15 @@
+<div class="p-8">
+  <H1 class="text-2xl text-black font-bold">Login</h1>
+
+  <%= form_for @changeset, Routes.login_path(@conn, :create), fn f -> %>
+    <div>
+      User Name <%= text_input f, :username, placeholder: "User Name" %>
+    </div>
+
+    <div>
+      Password <%= text_input f, :password, placeholder: "Password" %>
+    </div>
+
+    <%= submit "Login" %>
+  <% end %>
+</div>
