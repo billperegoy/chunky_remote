@@ -17,6 +17,8 @@ defmodule ChunkyRemoteWeb.VerifyController do
       Account.verify_user(user, %{old_password: password, password: new_password})
 
       conn
+      |> assign(:current_user, user)
+      |> put_session(:user_id, user.id)
       |> put_flash(:info, "Verified user: #{user.username}")
       |> redirect(to: Routes.dashboard_path(conn, :index))
     end

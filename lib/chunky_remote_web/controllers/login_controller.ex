@@ -10,7 +10,10 @@ defmodule ChunkyRemoteWeb.LoginController do
   def create(conn, %{"user" => %{"username" => username, "password" => password}}) do
     with {:ok, user} <- Account.get_user_by_username(username),
          {:ok, _} <- Argon2.check_pass(user, password) do
-      redirect(conn, to: Routes.dashboard_path(conn, :index))
+      conn
+      |> assign(:current_user, user)
+      |> put_session(:user_id, user.id)
+      |> redirect(to: Routes.dashboard_path(conn, :index))
     else
       _ ->
         conn
